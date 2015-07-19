@@ -1,12 +1,12 @@
-var app=angular.module("bloodbankapp",['ngRoute','ngResource','ui.bootstrap', 'lbServices']);
+var app = angular.module("bloodbankapp", ['ngRoute', 'ngResource', 'ui.bootstrap', 'lbServices', 'ngAutocomplete']);
 
 app
- .config(function($routeProvider, $locationProvider){
-  $routeProvider
-   .when('/', {
-    controller: 'homepagectrl',
-    templateUrl: 'views/home.html'
-   });
+        .config(function ($routeProvider, $locationProvider) {
+            $routeProvider
+                    .when('/', {
+                        controller: 'HomeController',
+                        templateUrl: 'views/home.html'
+                    });
 
-  $locationProvider.html5Mode(true);
- });
+            $locationProvider.html5Mode(true);
+        });
