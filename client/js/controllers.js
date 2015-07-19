@@ -1,6 +1,8 @@
 app.controller("HomeController", function ($scope, $q, Profile, Request, User) {
     $scope.users = User.count();
-
+    $scope.match_donors = {
+        count: 0
+    };
     $scope.blood_groups = [
         'A+',
         'A-',
@@ -12,12 +14,10 @@ app.controller("HomeController", function ($scope, $q, Profile, Request, User) {
         'O-',
         'Any',
     ];
-
     $scope.location_options = {
         types: '(cities)',
         watchEnter: true
     };
-
     $scope.signup = function () {
         if ($scope.user.$valid) {
             var user = new User();
@@ -37,13 +37,15 @@ app.controller("HomeController", function ($scope, $q, Profile, Request, User) {
     }
 
 
-    $scope.submit = function () {
-        console.log('Submitted');
-        var request = new Request();
-        console.log(request);
-        request.blood_group = $scope.blood_group;
-        request.location = $scope.location;
-        request.$save();
-        $scope.requests = Request.find();
+    $scope.search = function () {
+        var upper_lat = $scope.search_form.location_details.geometry.location.A + 0.03;
+        var lower_lat = $scope.search_form.location_details.geometry.location.A - 0.03;
+        var upper_lng = $scope.search_form.location_details.geometry.location.F + 0.03;
+        var lower_lng = $scope.search_form.location_details.geometry.location.F - 0.03;
+
+        $scope.match_donors = User.count({where: {"blood_group": $scope.search_form.blood_group,
+                "location_details.geometry.location.A": {between: [lower_lat, upper_lat]},
+                "location_details.geometry.location.F": {between: [lower_lng, upper_lng]}
+            }});
     }
 });
