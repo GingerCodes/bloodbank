@@ -17,9 +17,7 @@
   "parse": {},
   "routes": {},
   "files": {
-    "loopback#static": {
-      "params": "$!../client"
-    }
+    
   },
   "final": {
     "loopback#urlNotFound": {}
