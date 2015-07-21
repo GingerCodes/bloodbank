@@ -6,6 +6,9 @@ app
                     .when('/', {
                         controller: 'HomeController',
                         templateUrl: 'views/home.html'
+                    })
+                    .otherwise({
+                         redirectTo: '/'
                     });
 
             $locationProvider.html5Mode(true);
