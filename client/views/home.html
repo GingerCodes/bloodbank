@@ -1,114 +1,53 @@
-<h1>Blood Bank</h1>
-
 <div class="row">
-    <h3>Search</h3>
-    <form name="search_form" class="form-inline text-center" ng-submit="search()">
-        <div class="form-group">
-            <select class="form-control input-lg" id="blood_group" ng-model="search_form.blood_group">
-                <option ng-repeat="blood_group in blood_groups">{{blood_group}}</option>
-            </select>
-        </div>
+    <div class="col m12">
+        <h3>Search</h3>
+        <form name="search_form" class="form-inline text-center" ng-submit="search()">
+            <div class="form-group">
+                <select class="form-control input-lg" id="blood_group" ng-model="search_form.blood_group">
+                    <option ng-repeat="blood_group in blood_groups">{{blood_group}}</option>
+                </select>
+            </div>
 
-        <div class="form-group">
-            <input type="search" ng-model="search_form.location" class="form-control input-lg" placeholder="Location" ng-autocomplete  options="location_options" details="search_form.location_details" />
-        </div>
+            <div class="form-group">
+                <input type="text" ng-model="search_form.location" class="form-control input-lg" placeholder="Location" ng-autocomplete  options="location_options" details="search_form.location_details" />
+            </div>
 
-        <div class="form-group">
-            <input type="submit" name="submit" class="input-lg btn btn-success" value="Search" />
-        </div>
-    </form>
+            <div class="form-group">
+                <input type="submit" name="submit" class="input-lg btn btn-success" value="Search" />
+            </div>
+        </form>
+        <hr />
+    </div>
 </div>
-<br />
-<h3>Stats</h3>
-<div class="row text-center">
-    <div class="col-md-4">
-        <div class="panel panel-info">
-            <div class="panel-heading">Registered Donors</div> 
-            <div class="panel-body">
+
+
+<div class="row center">
+    <h3>Stats</h3>
+
+    <div class="col m4 s12">
+        <div class="card red darken-4">
+            <div class="card-content white-text">
+                <span class="card-title">Matching Donors</span> 
+                <h1>{{match_donors.count}}</h1>
+            </div>
+        </div>
+    </div>
+
+    <div class="col m4 s12">
+        <div class="card orange darken-1">
+            <div class="card-content white-text">
+                <span class="card-title">Registered Donors</span> 
                 <h1>{{::users.count}}</h1>
             </div>
         </div>
     </div>
-    <div class="col-md-4">
-        <div class="panel panel-info">
-            <div class="panel-heading">Donations Made</div>
-            <div class="panel-body">
-                Basic panel example
+
+    <div class="col m4 s12">
+        <div class="card blue darken-1">
+            <div class="card-content white-text">
+                <span class="card-title">Registered Donors</span> 
+                <h1>{{::users.count}}</h1>
             </div>
         </div>
-    </div>
-    <div class="col-md-4">
-        <div class="panel panel-info">
-            <div class="panel-heading">Matching Donors</div>
-            <div class="panel-body">
-                <h1>{{match_donors.count}}</h1>
-            </div>
-
-        </div>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-md-6">
-        <h3>User Registration</h3>
-        <form name="user" class="form-horizontal" novalidate ng-submit="signup()">
-
-            <div class="form-group">
-                <label for="user_first_name" class="control-label sr-only">First Name</label>
-                <div class="col-sm-6">`
-                    <input type="text" id="user_first_name" ng-model="user.first_name" placeholder="First Name" class="form-control input-lg" required/>
-                </div>
-
-                <label for="user_last_name" class="control-label sr-only">Last Name</label>
-                <div class="col-sm-6">`
-                    <input type="text" id="user_last_name" ng-model="user.last_name" placeholder="Last Name" class="form-control input-lg" required/>
-                </div>
-            </div>
-
-
-            <div class="form-group form-group-lg">
-                <label for="user_blood_group" class="control-label col-sm-3">Blood Group</label>
-                <div class="col-sm-9">
-                    <select class="form-control input-lg" id="user_blood_group" ng-model="user.blood_group" required>
-                        <option ng-repeat="blood_group in blood_groups">{{blood_group}}</option>
-                    </select>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="user_location" class="control-label sr-only">Location</label>
-                <div class="col-sm-12">
-                    <input type="search" class="form-control input-lg" placeholder="Location" ng-autocomplete ng-model="user.location" options="location_options" details="user.location_details" required/>
-                </div>
-            </div>
-            <hr />
-
-            <div class="form-group">
-                <label for="user_email" class="control-label sr-only">Email</label>
-                <div class="col-sm-12">
-                    <input type="email" id="user_email" ng-model="user.email" placeholder="Email ID" class="form-control input-lg" required/>
-                </div>
-            </div>
-
-
-            <div class="form-group">
-                <label for="user_password" class="control-label sr-only">Password</label>
-                <div class="col-sm-12">
-                    <input type="password" id="user_password" ng-model="user.password" placeholder="Password" class="form-control input-lg" required/>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label for="user_confirm_password" class="control-label sr-only">Confirm Password</label>
-                <div class="col-sm-12">
-                    <input type="password" id="user_confirm_password" ng-model="user.confirm_password" placeholder="Confirm Password" class="form-control input-lg" required/>
-                </div>
-            </div>
-
-            <div class="form-group text-center">
-                <input type="submit" name="signup" id="user_signup" value="Sign Up" class="btn btn-primary input-lg" />
-            </div>
-
-        </form>
     </div>
 </div>

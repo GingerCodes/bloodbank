@@ -22,6 +22,9 @@
     "bootstrap": "~3.3.5",
     "angular-route": "~1.4.3",
     "angular-resource": "~1.4.3",
-    "ngAutocomplete": "~1.0.0"
+    "ngAutocomplete": "~1.0.0",
+    "angular-material": "~0.10.0",
+    "materialize": "~0.97.0",
+    "angular.flashr": "*"
   }
 }
