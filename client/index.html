@@ -17,7 +17,7 @@
 
         <!-- Form For CSS -->
         <!--<link href="bower_components/angular-form-for/dist/form-for.material.css" rel="stylesheet" type="text/css"/>-->
-        
+
         <!-- Flasher CSS -->
         <link href="bower_components/toastr/toastr.css" rel="stylesheet" type="text/css"/>
         <!-- App CSS -->
@@ -31,23 +31,26 @@
         <div class="col s12">
             <nav class="light-blue lighten-1" role="navigation">
                 <div class="nav-wrapper container">
-                    <a class="brand-logo" href="#">Blood Bank</a>
+                    <a class="brand-logo" href="/">Blood Bank</a>
                     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
                     <ul class="right hide-on-med-and-down">
                         <li><a href="/">Home</a></li>
-                        <li><a href="/register">Register</a></li>
-                        <li><a href="/login">Login</a></li>
+                        <li ng-hide="currentUser"><a href="/register">Register</a></li>
+                        <li ng-hide="currentUser"><a href="/login">Login</a></li>
+                        <li ng-show="currentUser"><a href="/logout">Logout</a></li>
                     </ul>
                     <ul class="side-nav" id="mobile-demo">
                         <li><a href="/">Home</a></li>
-                        <li><a href="/register">Register</a></li>
-                        <li><a href="/login">Login</a></li>
+                        <li ng-hide="currentUser"><a href="/register">Register</a></li>
+                        <li ng-hide="currentUser"><a href="/login">Login</a></li>
+                        <li ng-show="currentUser"><a href="/logout">Logout</a></li>
                     </ul>
                 </div>
             </nav>
         </div>
 
         <div class="container">
+            <h2 ng-show="currentUser">Hello {{currentUser.email}}</h2>
             <div ng-view></div>
         </div>
 
@@ -75,9 +78,9 @@
         <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>
 
         <!-- Form For Module -->
-<!--        <script src="bower_components/angular-form-for/dist/form-for.min.js" type="text/javascript"></script>
-        <script src="bower_components/angular-form-for/dist/form-for.material-templates.js" type="text/javascript"></script>-->
-        
+        <!--        <script src="bower_components/angular-form-for/dist/form-for.min.js" type="text/javascript"></script>
+                <script src="bower_components/angular-form-for/dist/form-for.material-templates.js" type="text/javascript"></script>-->
+
         <!-- Angular Flashr -->
         <script src="bower_components/angular.flashr/angular-flashr.js" type="text/javascript"></script>
         <script src="bower_components/toastr/toastr.min.js" type="text/javascript"></script>

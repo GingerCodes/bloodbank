@@ -15,6 +15,10 @@ app
                         controller: 'UserController',
                         templateUrl: 'views/login.html'
                     })
+                    .when('/logout', {
+                        controller: 'AuthLogoutController',
+                        template: " "
+                    })
                     .otherwise({
                         redirectTo: '/'
                     });

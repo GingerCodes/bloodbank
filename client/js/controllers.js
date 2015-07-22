@@ -1,4 +1,4 @@
-app.controller("HomeController", function ($scope, $q, Profile, Request, User) {
+app.controller("HomeController", function ($scope, Profile, Request, User) {
     $scope.users = User.count();
     $scope.match_donors = {
         count: 0
@@ -34,7 +34,7 @@ app.controller("HomeController", function ($scope, $q, Profile, Request, User) {
     }
 });
 
-app.controller("UserController", function ($scope, $location, User, flashr) {
+app.controller("UserController", function ($rootScope, $scope, $location, User, flashr) {
     $scope.blood_groups = [
         'A+',
         'A-',
@@ -64,8 +64,7 @@ app.controller("UserController", function ($scope, $location, User, flashr) {
 //            user.date_of_birth = "2-2-1988";
 //            user.gender = true;
             user.$create({}, function (data) {
-                console.log(data);
-
+                flashr.later.success("Registration Completed Succesfully.");
                 $location.path('/');
             }, function (err) {
                 var messages = err.data.error.details.messages;
@@ -74,10 +73,33 @@ app.controller("UserController", function ($scope, $location, User, flashr) {
                         flashr.now.warning(key + " " + messages[key]);
                     }
                 }
-                console.log(err.data);
             });
         } else {
-            flashr.now.error("Validation Erros");
+            flashr.now.error("Please fill all the fields.");
         }
-    }
+    };
+
+    $scope.login = function () {
+        if ($scope.loginForm.$valid) {
+            User.login($scope.user).$promise.then(function (response) {
+                $rootScope.currentUser = {
+                    id: response.user.id,
+                    tokenId: response.id,
+                    email: $scope.user.email
+                };
+                flashr.later.success("Succesfully Logged In");
+                $location.path('/');
+            })
+        } else {
+            flashr.now.error("Invalid");
+        }
+    };
 });
+
+app.controller('AuthLogoutController', ['$rootScope', '$scope', '$location', 'User',
+    function ($rootScope, $scope, $location, User) {
+        User.logout().$promise.then(function () {
+            $rootScope.currentUser = null;
+            $location.path('/');
+        });
+    }])
