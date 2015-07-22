@@ -87,7 +87,8 @@ app.controller("UserController", function ($rootScope, $scope, $location, User, 
                     tokenId: response.id,
                     email: $scope.user.email
                 };
-                flashr.later.success("Succesfully Logged In");
+
+                flashr.now.success("Succesfully Logged In");
                 $location.path('/');
             })
         } else {
@@ -102,4 +103,15 @@ app.controller('AuthLogoutController', ['$rootScope', '$scope', '$location', 'Us
             $rootScope.currentUser = null;
             $location.path('/');
         });
-    }])
+    }]);
+
+app.controller('ProfileController', ['$rootScope', '$scope', 'User', 'LoopBackAuth',
+    function ($rootScope, $scope, User, LoopBackAuth) {
+        if (LoopBackAuth.currentUserData == null) {
+            User.getCurrent().$promise.then(function (data) {
+                $scope.profile = LoopBackAuth.currentUserData;
+            })
+        }else{
+            $scope.profile = LoopBackAuth.currentUserData;
+        }
+    }]);

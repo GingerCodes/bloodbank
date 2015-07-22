@@ -37,12 +37,14 @@
                         <li><a href="/">Home</a></li>
                         <li ng-hide="currentUser"><a href="/register">Register</a></li>
                         <li ng-hide="currentUser"><a href="/login">Login</a></li>
+                        <li ng-show="currentUser"><a href="/profile">Profile</a></li>
                         <li ng-show="currentUser"><a href="/logout">Logout</a></li>
                     </ul>
                     <ul class="side-nav" id="mobile-demo">
                         <li><a href="/">Home</a></li>
                         <li ng-hide="currentUser"><a href="/register">Register</a></li>
                         <li ng-hide="currentUser"><a href="/login">Login</a></li>
+                        <li ng-show="currentUser"><a href="/profile">Profile</a></li>
                         <li ng-show="currentUser"><a href="/logout">Logout</a></li>
                     </ul>
                 </div>
@@ -50,7 +52,6 @@
         </div>
 
         <div class="container">
-            <h2 ng-show="currentUser">Hello {{currentUser.email}}</h2>
             <div ng-view></div>
         </div>
 
