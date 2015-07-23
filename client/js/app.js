@@ -1,4 +1,4 @@
-var app = angular.module("bloodbankapp", ['ngRoute', 'ngResource', 'lbServices', 'ngAutocomplete', 'ngMaterial', 'flashr']);
+var app = angular.module("bloodbankapp", ['ngRoute', 'ngResource', 'lbServices', 'ngAutocomplete', 'ngMaterial']);
 
 app
         .config(function ($routeProvider, $locationProvider, $httpProvider) {

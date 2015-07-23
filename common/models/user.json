@@ -1,31 +1,37 @@
 {
-    "name": "user",
-    "plural": "user",
-    "base": "User",
-    "idInjection": true,
-    "options": {
-        "validateUpsert": true
+  "name": "user",
+  "plural": "user",
+  "base": "User",
+  "idInjection": true,
+  "options": {
+    "validateUpsert": true
+  },
+  "properties": {
+    "date_of_birth": {
+      "type": "date",
+      "required": true
     },
-    "properties": {
-        "date_of_birth": {
-            "type": "date",
-            "required": true
-        },
-        "gender": {
-            "type": "boolean",
-            "required": true
-        }
-    },
-    "validations": [],
-    "relations": {},
-    "acls": [
-        {
-            "accessType": "EXECUTE",
-            "principalType": "ROLE",
-            "principalId": "$everyone",
-            "permission": "ALLOW",
-            "property": "count"
-        }
-    ],
-    "methods": []
+    "gender": {
+      "type": "boolean",
+      "required": true
+    }
+  },
+  "validations": [],
+  "relations": {
+    "requests": {
+      "type": "hasMany",
+      "model": "request",
+      "foreignKey": ""
+    }
+  },
+  "acls": [
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "count"
+    }
+  ],
+  "methods": []
 }

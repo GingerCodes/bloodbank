@@ -11,9 +11,10 @@
     "errorhandler": "^1.1.1",
     "loopback": "^2.14.0",
     "loopback-boot": "^2.6.5",
+    "loopback-connector-mongodb": "latest",
     "loopback-datasource-juggler": "^2.19.0",
-    "serve-favicon": "^2.0.1",
-    "loopback-connector-mongodb": "latest"
+    "mongodb": "^2.0.39",
+    "serve-favicon": "^2.0.1"
   },
   "optionalDependencies": {
     "loopback-explorer": "^1.1.0"

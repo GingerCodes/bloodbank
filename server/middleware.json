@@ -16,9 +16,7 @@
   "auth": {},
   "parse": {},
   "routes": {},
-  "files": {
-    
-  },
+  "files": {},
   "final": {
     "loopback#urlNotFound": {}
   },

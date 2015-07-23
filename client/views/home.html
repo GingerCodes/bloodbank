@@ -1,32 +1,35 @@
 <div class="row">
     <div class="col m12">
         <h3>Search</h3>
-        <form name="search_form" class="form-inline text-center" ng-submit="search()">
+        <form name="search_form" class="form-inline text-center" ng-submit="search_doner()">
             <div class="row center">
-                <div class="col m8 s12">
+                <div class="col m7 s12">
                     <div class="row">
                         <div class="col s12 input-field">
-                            <md-select ng-model="search_form.user.blood_group" placeholder="Blood Group">
+                            <md-select ng-model="search.blood_group" placeholder="Blood Group" required>
                                 <md-option ng-value="blood_group" ng-repeat="blood_group in blood_groups">{{blood_group}}</md-option>
                             </md-select>
                         </div>
 
                         <div class="col  s12 input-field">
-                            <input type="text" ng-model="search_form.location" class="form-control input-lg" placeholder="Location" ng-autocomplete  options="location_options" details="search_form.location_details" />
+                            <input type="text" ng-model="search.location" required class="form-control input-lg" placeholder="Location" ng-autocomplete  options="location_options" details="search.location_details" />
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col s12 input-field">
-                            <input type="submit" name="submit" class="input-lg btn btn-success" value="Search" />
+                        <div class="col s12 input-field center">
+                            <input type="submit" name="submit" class="btn btn-large" value="Search" />
                         </div>
                     </div>
                 </div>
-
-                <div class="col m4 s12">
-                    <div class="card red darken-4">
+                <div class="col m5 s12">
+                    <div class="card  indigo darken-2">
                         <div class="card-content white-text">
-                            <span class="card-title">Matching Donors</span> 
-                            <h1>{{match_donors.count}}</h1>
+                            <!--<span class="card-title">Result</span>--> 
+                            <h1>{{match_donors.count}} Donors</h1>
+                        </div>
+                        <div class="card-action">
+                            <a ng-hide="currentUser" href="/login" class="btn waves waves-light blue lighten-1 white-text">Login to Request</a>
+                            <button ng-show="currentUser" ng-disabled="match_donors.count == 0 || search_form.$dirty" ng-click="request()" class="btn waves-effect waves-light btn-large blue lighten-1 white-text">Submit Request</button>
                         </div>
                     </div>
                 </div>
