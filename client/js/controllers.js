@@ -1,4 +1,4 @@
-app.controller("HomeController", function ($scope, Profile, Request, User) {
+app.controller("HomeController", function ($rootScope, $scope, Profile, Request, User) {
     $scope.users = User.count();
     $scope.match_donors = {
         count: 0
@@ -43,8 +43,8 @@ app.controller("HomeController", function ($scope, Profile, Request, User) {
     $scope.request = function () {
         if ($scope.search_form.$valid && $scope.search_form.$pristine) {
             console.log($scope.search.blood_group);
-            Request.create($scope.search).$promise.then(function(data){
-                
+            User.requests.create({id: $rootScope.currentUser.id}, $scope.search).$promise.then(function (data) {
+
                 Materialize.toast("Request Recived.", 4000);
                 console.log(data);
             })
