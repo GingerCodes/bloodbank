@@ -25,6 +25,6 @@
     "ngAutocomplete": "~1.0.0",
     "angular-material": "~0.10.0",
     "materialize": "~0.97.0",
-    "angular.flashr": "*"
+    "angular-ui-router": "~0.2.15"
   }
 }
