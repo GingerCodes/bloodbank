@@ -1,19 +1,5 @@
 <div class="section">
-    <div class="row">
-        <div class="col s5 m3 center">
-            <!--{{profile}}-->
-            <img class="responsive-img circle" ng-src="{{gravatar}}" />
-
-        </div>
-        <div class="col s7 m9">
-            <h1>{{::profile.first_name}} {{::profile.last_name}}</h1>
-            <h4>{{::profile.location}}</h4>
-        </div>
-    </div>
-</div>
-
-<div class="section">
-    <h5>Requests</h5>
+    <h5>Recent Requests</h5>
     <hr />
     <table class="striped bordered">
         <thead>
@@ -29,9 +15,8 @@
                 <td>{{::request.id| objectIDtoDate | date}}</td>
                 <td>{{::request.blood_group}}</td>
                 <td>{{::request.location}}</td>
-                <td><a ui-sref="myRequest({id:request.id})" class="btn">Details</a></td>
+                <td><a ui-sref="request({id:request.id})" class="btn">Details</a></td>
             </tr>
         </tbody>
     </table>
 </div>
-

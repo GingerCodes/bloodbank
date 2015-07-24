@@ -1513,6 +1513,45 @@ module.factory(
           method: "POST"
         },
 
+        /**
+         * @ngdoc method
+         * @name lbServices.User#countDonors
+         * @methodOf lbServices.User
+         *
+         * @description
+         *
+         * Test Desc
+         *
+         * @param {Object=} parameters Request parameters.
+         *
+         *   This method does not accept any parameters.
+         *   Supply an empty object or omit this argument altogether.
+         *
+         * @param {Object} postData Request data.
+         *
+         *  - `blood_group` – `{string}` - 
+         *
+         *  - `location_details` – `{string}` - 
+         *
+         * @param {function(Object,Object)=} successCb
+         *   Success callback with two arguments: `value`, `responseHeaders`.
+         *
+         * @param {function(Object)=} errorCb Error callback with one argument:
+         *   `httpResponse`.
+         *
+         * @returns {Object} An empty reference that will be
+         *   populated with the actual data once the response is returned
+         *   from the server.
+         *
+         * Data properties:
+         *
+         *  - `count` – `{number=}` - 
+         */
+        "countDonors": {
+          url: urlBase + "/user/countDonors",
+          method: "POST"
+        },
+
         // INTERNAL. Use Request.user() instead.
         "::get::request::user": {
           url: urlBase + "/requests/:id/user",
