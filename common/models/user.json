@@ -51,6 +51,20 @@
       "principalType": "ROLE",
       "principalId": "$everyone",
       "permission": "DENY"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$everyone",
+      "permission": "ALLOW",
+      "property": "countDonors"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW",
+      "property": "__findById__requests"
     }
   ],
   "methods": []
