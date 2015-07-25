@@ -33,12 +33,6 @@
     "dataSource": "db",
     "public": false
   },
-  "Profile": {
-    "dataSource": "db",
-    "public": true,
-    "$promise": {},
-    "$resolved": true
-  },
   "user": {
     "dataSource": "db",
     "public": true

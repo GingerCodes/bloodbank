@@ -21,7 +21,13 @@
     "requests": {
       "type": "hasMany",
       "model": "request",
-      "foreignKey": ""
+      "foreignKey": "userId"
+    },
+    "donations": {
+      "type": "hasMany",
+      "model": "request",
+      "foreignKey": "userId",
+      "through": "donation"
     }
   },
   "acls": [
@@ -65,6 +71,20 @@
       "principalId": "$owner",
       "permission": "ALLOW",
       "property": "__findById__requests"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW",
+      "property": "__exists__donations"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW",
+      "property": "__link__donations"
     }
   ],
   "methods": []

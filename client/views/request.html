@@ -2,7 +2,9 @@
     <div class="row valign-wrapper">
         <div class="col s12 m9 valign">
             <h4>{{request.location}}</h4>
-            <strong>{{request.id | objectIDtoDate | date}}</strong>
+            <strong>{{request.id| objectIDtoDate | date}}</strong> <br />
+            <button class="btn" ng-show="user.blood_group == request.blood_group && !is_donated" ng-click="donate()">Donate</button>
+            <button class="btn" ng-show="is_donated" disabled="disabled">Donated</button>
         </div>
         <div class="col s12 m3">
             <div class="card center red">
@@ -12,4 +14,27 @@
             </div>
         </div>
     </div>
+
+    <div class="row">
+        <div class="col m6 s12">
+            <div class="card orange darken-1">
+                <div class="card-content white-text">
+                    <span class="card-title">Willing To Donate</span> 
+                    <h1>{{::willing_donors_count.count}}</h1>
+                </div>
+            </div>
+        </div>
+
+        <div class="col m6 s12">
+            <div class="card blue darken-1">
+                <div class="card-content white-text">
+                    <span class="card-title">Donated</span> 
+                    <h1>{{::users.count}}</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
 </div>

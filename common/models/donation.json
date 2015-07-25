@@ -6,17 +6,24 @@
     "validateUpsert": true
   },
   "properties": {
-    "user_id": {
-      "type": "object",
-      "required": true
-    },
-    "request_id": {
-      "type": "object",
+    "is_confirm": {
+      "type": "boolean",
       "required": true
     }
   },
   "validations": [],
-  "relations": {},
+  "relations": {
+    "donator": {
+      "type": "belongsTo",
+      "model": "user",
+      "foreignKey": "userId"
+    },
+    "request": {
+      "type": "belongsTo",
+      "model": "request",
+      "foreignKey": "requestId"
+    }
+  },
   "acls": [],
   "methods": []
 }
