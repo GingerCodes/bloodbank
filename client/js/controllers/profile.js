@@ -1,16 +1,13 @@
-app.controller('ProfileController', ['$rootScope', '$scope', 'User', 'LoopBackAuth', 'requests',
-    function ($rootScope, $scope, User, LoopBackAuth, requests) {
-        if (LoopBackAuth.currentUserData == null) {
-            User.getCurrent().$promise.then(function (data) {
-                $scope.profile = LoopBackAuth.currentUserData;
-                $scope.gravatar = get_gravatar($scope.profile.email, 180);
-            })
-        } else {
-            $scope.profile = LoopBackAuth.currentUserData;
-            $scope.gravatar = get_gravatar($scope.profile.email, 180);
-        }
+app.controller('ProfileController', ['$rootScope', '$scope', 'User', 'LoopBackAuth', 'user',
+    function ($rootScope, $scope, User, LoopBackAuth, user) {
 
-        $scope.requests = requests;
+        $scope.user = user;
+
+        user.$promise.then(function () {
+            $scope.gravatar = get_gravatar(user.email, 180);
+        });
+
+
         function get_gravatar(email, size) {
 
             // MD5 (Message-Digest Algorithm) by WebToolkit

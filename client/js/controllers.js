@@ -68,8 +68,8 @@ app.controller("UserController", ['$rootScope', '$scope', '$location', 'User',
                 user.blood_group = $scope.user.blood_group;
                 user.location = $scope.user.location;
                 user.location_details = $scope.user.location_details;
-//            user.date_of_birth = "2-2-1988";
-//            user.gender = true;
+                user.date_of_birth = $scope.user.date_of_birth;
+                user.gender = true;
                 user.$create({}, function (data) {
                     Materialize.toast("Registration Completed Succesfully.", 4000);
                     $location.path('/');

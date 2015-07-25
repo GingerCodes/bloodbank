@@ -85,6 +85,13 @@
       "principalId": "$owner",
       "permission": "ALLOW",
       "property": "__link__donations"
+    },
+    {
+      "accessType": "EXECUTE",
+      "principalType": "ROLE",
+      "principalId": "$owner",
+      "permission": "ALLOW",
+      "property": "findOne"
     }
   ],
   "methods": []

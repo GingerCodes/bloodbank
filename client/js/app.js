@@ -1,5 +1,4 @@
 var app = angular.module("bloodbankapp", ['ui.router', 'ngResource', 'lbServices', 'ngAutocomplete', 'ngMaterial']);
-
 app
         .config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider',
             function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
@@ -31,16 +30,16 @@ app
                             controller: 'ProfileController',
                             templateUrl: "views/profile.html",
                             resolve: {
-                                'requests': function ($rootScope, User) {
-                                    return User.requests({id: $rootScope.currentUser.id});
-                                }
-                            }
+                                'user': function ($rootScope, User) {
+                                    return  User.getCurrent({filter: {where: {'is_confirm': false}, include: ['requests', 'donations']}});
+                                },
+                            },
                         })
                         .state('myRequest', {
                             url: "/profile/request/:id",
-                            controller: function ($scope, request) {
-                                $scope.requests = request;
-                            },
+                            controller: ['$scope', 'request', function ($scope, request) {
+                                    $scope.request = request;
+                                }],
                             templateUrl: "../../views/profile.request.html",
                             resolve: {
                                 request: function (User, $stateParams, $rootScope) {
@@ -66,7 +65,7 @@ app
                             controller: "RequestController",
                             resolve: {
                                 request: function (Request, $stateParams) {
-                                    return Request.findById({id: $stateParams.id});
+                                    return Request.findById({id: $stateParams.id, filter: {"include": "user"}});
                                 },
                                 user: function (User, $rootScope) {
                                     if ($rootScope.currentUser)
@@ -88,15 +87,16 @@ app
                                     else
                                         return false;
                                 },
-                                willing_donors_count: function (Request, $stateParams) {
-                                    return Request.donators.count({id: $stateParams.id});
+                                count: function (Donation, $stateParams) {
+                                    return {
+                                        "confirmed": Donation.count({where: {"requestId": $stateParams.id, "is_confirm": true}}),
+                                        "pending": Donation.count({where: {"requestId": $stateParams.id, "is_confirm": false}})
+                                    }
                                 }
                             }
-                        })
-                        ;
 
+                        });
                 $locationProvider.html5Mode(true);
-
                 // Inside app config block
                 $httpProvider.interceptors.push(['$rootScope', '$q', '$location', 'LoopBackAuth',
                     function ($rootScope, $q, $location, LoopBackAuth) {
