@@ -11,7 +11,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="request in requests">
+            <tr ng-repeat="request in requests.findRecentRequests">
                 <td>{{::request.id| objectIDtoDate | date}}</td>
                 <td>{{::request.blood_group}}</td>
                 <td>{{::request.location}}</td>

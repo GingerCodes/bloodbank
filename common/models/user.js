@@ -11,8 +11,8 @@ module.exports = function (User) {
 
         User.count({
             "blood_group": blood_group,
-            "location_details.geometry.location.A": {between: [lower_lat, upper_lat]},
-            "location_details.geometry.location.F": {between: [lower_lng, upper_lng]}
+            "location_details.geometry.location.G": {between: [lower_lat, upper_lat]},
+            "location_details.geometry.location.K": {between: [lower_lng, upper_lng]}
         }, function (err, count) {
             if (err)
                 throw err
