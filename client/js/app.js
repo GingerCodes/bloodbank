@@ -1,5 +1,4 @@
 var app = angular.module("bloodbankapp", ['ui.router', 'ngResource', 'lbServices', 'ngAutocomplete', 'ngMaterial']);
-
 app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpProvider',
     function ($stateProvider, $urlRouterProvider, $locationProvider, $httpProvider) {
 
@@ -121,8 +120,26 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpP
                   };
             }]);
     }]);
+app.run(["$rootScope", '$window', 'LoopBackAuth', function ($rootScope, $window, LoopBackAuth) {
 
-app.run(["$rootScope", 'LoopBackAuth', function ($rootScope, LoopBackAuth) {
+        $window.fbAsyncInit = function () {
+            FB.init({
+                appId: '1477349082581158',
+                xfbml: true,
+                version: 'v2.4'
+            });
+        };
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {
+                return;
+            }
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+        
         $rootScope.$on("$stateChangeStart", function () {
             if (!$rootScope.currentUser && LoopBackAuth.currentUserId) {
                 $rootScope.currentUser = LoopBackAuth;
