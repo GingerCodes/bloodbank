@@ -128,6 +128,10 @@ app.run(["$rootScope", '$window', 'LoopBackAuth', function ($rootScope, $window,
                 xfbml: true,
                 version: 'v2.4'
             });
+
+            FB.Event.subscribe('auth.authResponseChange', function (res) {
+                console.log(res);
+            });
         };
         (function (d, s, id) {
             var js, fjs = d.getElementsByTagName(s)[0];
@@ -139,7 +143,8 @@ app.run(["$rootScope", '$window', 'LoopBackAuth', function ($rootScope, $window,
             js.src = "//connect.facebook.net/en_US/sdk.js";
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));
-        
+
+
         $rootScope.$on("$stateChangeStart", function () {
             if (!$rootScope.currentUser && LoopBackAuth.currentUserId) {
                 $rootScope.currentUser = LoopBackAuth;

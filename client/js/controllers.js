@@ -102,6 +102,10 @@ app.controller("UserController", ['$rootScope', '$scope', '$location', 'User',
                 Materialize.toast("Invalid", 4000);
             }
         };
+        
+        $scope.fbLogin = function(){
+            FB.login();
+        }
     }]);
 
 app.controller('AuthLogoutController', ['$rootScope', '$scope', '$location', 'User',
