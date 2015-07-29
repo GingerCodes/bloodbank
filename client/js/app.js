@@ -50,12 +50,12 @@ app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', '$httpP
                 .state('requests', {
                     url: "/requests",
                     controller: ['$scope', 'requests', function ($scope, requests) {
-                            $scope.requests = requests;
+                        $scope.requests = requests;
                         }],
                     templateUrl: "views/requests.html",
                     resolve: {
                         requests: function (Request, $stateParams, $rootScope) {
-                            return Request.find();
+                            return Request.findRecentRequests();
                         }
                     }
                 })
